@@ -36,7 +36,7 @@ def main(command):
 	if "open" in command:
 		webbrowser.open("https://www.google.com")
 		#print("webbrowser opened")
-		bot("Your web browser is opened ")
+		bot("Your web browser is opened! ")
 	elif "time" in command:
 		current = datetime.datetime.now()
 		print(current)
