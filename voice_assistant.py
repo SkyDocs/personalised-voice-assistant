@@ -1,6 +1,7 @@
 import os
 import sys
 import speech_recognition as sr
+import webbrowser
 
 def listen():
     mic = sr.Microphone()
@@ -18,4 +19,10 @@ def listen():
 
     return command
        
+
+
+	def main(command):
+		if open in command:
+			webbrowser.open(google.com)
+
 listen()
