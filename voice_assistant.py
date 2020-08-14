@@ -1,11 +1,21 @@
 import os
-import speech_recognition as sr
 import sys
-
+import speech_recognition as sr
 
 def listen():
     mic = sr.Microphone()
+    r = sr.Recognizer()
     with mic as source:
         audio = r.listen(source)
-        r.recognize_google(audio)
+
+    try:
+    	command = r.recognize_google(audio).lower()
+    	print("You said : " + command)
+
+    except sr.UnknownValueError:
+    	print("Error occured, try again")
+    	command = listen()
+
+    return command
        
+listen()
