@@ -3,16 +3,22 @@ import sys
 import speech_recognition as sr
 import webbrowser
 import datetime
-from gtts import gTTS
-import playsound
+# from gtts import gTTS
+# import playsound
+import pyttsx3
 
 def bot(talk):
 	print(talk)
-	text_to_speech = gTTS(text=talk, lang='en', slow=False)
-	x = text_to_speech.save('sound.mp3')
-	playsound.playsound(x, True)
-	
+	# text_to_speech = gTTS(text=talk, lang='en', slow=False)
+	# x = text_to_speech.save('sound.mp3')
+	# playsound.playsound(x, True)
+	engine = pyttsx3.init()
+	sound = engine.getProperty('voices')
 
+	for i in str(talk).splitlines():
+		engine.say(talk)
+	engine.runAndWait()
+	
 
 def listen():
 	mic = sr.Microphone()
