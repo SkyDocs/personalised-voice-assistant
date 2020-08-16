@@ -1,7 +1,0 @@
-1597492726104	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileYwAFmQ"
-console.error: SearchCache: "_readCacheFile: Error reading cache file:" (new Error("", "(unknown module)"))
-1597492729601	Marionette	INFO	Listening on port 35967
-1597492729669	Marionette	WARN	TLS certificate errors will be ignored for this session
-[Child 12348, MediaDecoderStateMachine #1] WARNING: Decoder=7f35e11ef400 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /build/firefox-2caJuG/firefox-79.0+build1/dom/media/MediaDecoderStateMachine.cpp, line 3470
-[Child 12348, MediaDecoderStateMachine #1] WARNING: Decoder=7f35e11ef400 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /build/firefox-2caJuG/firefox-79.0+build1/dom/media/MediaDecoderStateMachine.cpp, line 3470
-1597492775484	Marionette	INFO	Stopped listening on port 35967
