@@ -42,60 +42,76 @@ def listen():
 
 	return command	  
 
-def activate(talk):
-	wake_words = {'ok siri'}
+# def activate(talk):
+# 	wake_words = {'ok siri'}
 
-	talk = talk.lower()
-	for phrase in wake_words:
-		if phrase in talk:
-			return True
-	return False  
+# 	talk = talk.lower()
+# 	for phrase in wake_words:
+# 		if phrase in talk:
+# 			return True
+# 	return False  
 	
 def main(command):
 	if "hello" in command:
-		bot("Hey, this is your voice assistant, developed by a team at skydocs.")
+		bot("Hey, this is your voice assistant, developed by Team skydocs.")
+
 	elif "joke" in command:
 		bot(pyjokes.get_joke())		
+
 	elif "open google" in command:
 		webbrowser.open("https://www.google.com")
 		#print("webbrowser opened")
-		bot("Your web browser is opened! ")
+		bot("Your web browser is opened!")
+
 	elif "current time" in command:
 		current = datetime.datetime.now()
-		print(current)
+		bot("The current time is" + current)
+
 	elif "youtube" in command:
 		bot("opening youtube")
 		url = "https://www.youtube.com"
+
 		webbrowser.open(url)
 	elif "gmail" in command:
 		bot("sure, opening gmail")
 		url_mail = "https://www.gmail.com"
 		webbrowser.open(url_mail)
+
 	elif "wikipedia" in command:
+		bot("Sure! Here you go.")
 		url_wiki = "https://www.wikipedia.org/"
 		webbrowser.open(url_wiki)
-		bot("Sure! Here you go.")
-	elif "lock screen" in command:
-		bot("Locking your screen")
-		os.popen('gnome-screensaver-command --lock')
+		
 	elif "news" in command:
 		bot("opening google news")
 		news_url = "news.google.com"
 		webbrowser.open(news_url)
+
 	elif "map" in command:
 		bot("opening maps powered by google")
 		maps_url = "google.com/maps"
 		webbrowser.open(maps_url)
+
 	elif "shutdown" in command:
-		bot("Shutting down your system")
-		os.system("poweroff")
+		bot("You are going to poweroff your system. Are you sure?")
+		listen()
+		if "yes" in command:
+			os.system("poweroff")
+		else:
+			bot("You have aborted the process. Returning back to previous state")
+			main(listen())
+
 	elif "reminder" in command:
 		bot("What shall I remind you about ?")
 	
+	elif "bye" in command:
+		bot("Bye!")
+		sys.exit()
+		
+	else:
+		bot("I am sorry, I am unable to process your request.")
 
 
 
-
-
-
-main(listen())
+while True:
+	main(listen())
