@@ -8,6 +8,9 @@ import subprocess
 import datetime
 import pyttsx3
 import webbrowser
+from urllib.request import urlopen
+from bs4 import BeautifulSoup as soup
+
 
 
 def bot(talk):
@@ -73,15 +76,32 @@ def main(command):
 		#print("webbrowser opened")
 		bot("Your web browser is opened!")
 
-	elif "current time" in command:
-		current = datetime.datetime.now()
-		bot("The current time is" + current)
+	elif 'time' in command:
+		now = datetime.datetime.now()
+		bot('Current time is %d hours %d minutes' % (now.hour, now.minute))
 
-	elif "youtube" in command:
-		bot("opening youtube")
-		url = "https://www.youtube.com"
+	elif "play the video" in command:
 
+		bot("What to play?")
+		q=sr.Recognizer()
+		t=0
+		with sr.Microphone() as source:
+			print("Search for the term:")
+			while t==0:
+				audio =q.listen(source)
+				try:
+					query = q.recognize_google(audio)
+					print('you said :{}'.format(text))
+					t=1
+				except:
+					print('Not understandable')
+					print('Try again')
+					t==0
+		url = "https://www.youtube.com/results?search_query=" + query 
 		webbrowser.open(url)
+
+
+
 	elif "gmail" in command:
 		bot("sure, opening gmail")
 		url_mail = "https://www.gmail.com"
@@ -93,9 +113,18 @@ def main(command):
 		webbrowser.open(url_wiki)
 		
 	elif "news" in command:
-		bot("opening google news")
-		news_url = "news.google.com"
-		webbrowser.open(news_url)
+		try:
+			news_url="https://news.google.com/news/rss"
+			Client=urlopen(news_url)
+			xml_page=Client.read()
+			Client.close()
+			soup_page=soup(xml_page,"xml")
+			news_list=soup_page.findAll("item")
+			for news in news_list[:15]:
+				bot(news.title.text.encode('utf-8'))
+		except Exception as e:
+			print(e)
+
 
 	elif "map" in command:
 		bot("opening maps powered by google")
@@ -110,9 +139,6 @@ def main(command):
 		else:
 			bot("You have aborted the process. Returning back to previous state")
 			main(listen())
-
-	elif "reminder" in command:
-		bot("What shall I remind you about ?")
 
 	#google search
 	elif 'search' in command:
