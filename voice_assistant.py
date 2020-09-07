@@ -7,6 +7,7 @@ import pyjokes
 import subprocess
 import datetime
 import pyttsx3
+import webbrowser
 
 
 def bot(talk):
@@ -53,7 +54,16 @@ def listen():
 	
 def main(command):
 	if "hello" in command:
-		bot("Hey, this is your voice assistant, developed by Team skydocs.")
+		current_time = int(strftime('%H'))
+		if current_time < 12:
+			bot("Hello, Good morning, this is your voice assistant, developed by Team skydocs.")
+		elif 12 <= current_time < 16:
+			bot("Hello, Good afternoon, this is your voice assistant, developed by Team skydocs.")
+		else:
+			bot("Hello, Good evening, this is your voice assistant, developed by Team skydocs.")
+
+	elif "how are you" in command:
+		bot("I am great. Hoping the same for you.")
 
 	elif "joke" in command:
 		bot(pyjokes.get_joke())		
@@ -103,6 +113,34 @@ def main(command):
 
 	elif "reminder" in command:
 		bot("What shall I remind you about ?")
+
+	#google search
+	elif 'search' in command:
+		bot('What to search?')
+		#listen()
+
+		w=sr.Recognizer()
+		t=0
+
+		with sr.Microphone() as source:
+			print('Search for the term:')
+			
+			while t==0:
+				audio = w.listen(source)
+				try:
+					query =w.recognize_google(audio)
+					print('you said :{}'.format(text))
+					t=1
+
+				except:
+					print('Not understandable')
+					print('Try again')
+					t==0
+
+		#query = listen()
+		# query = text
+		# safari_path = r'/Applications/Safari.app %s'
+		webbrowser.open("https://google.com/search?q=%s" % query)
 	
 	elif "bye" in command:
 		bot("Bye!")
