@@ -24,6 +24,10 @@ For example if you have trained the model for 3 users, then keep/edit the `user_
 
 ### Use your Voice Assistant
 
+Install the requirements by running:
+
+`pip install -r requirements.txt` or `pip3 install -r requirements.txt`
+
 After installing the requirements and doing the necessary changes. Run: <br>
 
 `python predict.py` or `python3 predict.py` <br>
