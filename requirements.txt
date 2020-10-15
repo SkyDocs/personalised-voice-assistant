@@ -2,7 +2,7 @@ beautifulsoup4 == 4.9.1
 
 ipython == 7.17.0
 
-numpy == 1.19.2
+numpy == 1.16.4
 
 pyaudio == 0.2.11
 
