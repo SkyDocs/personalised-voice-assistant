@@ -1,6 +1,9 @@
-print("You will be asked to speak for few seconds for the recognition of the speaker")
-
 import os
+clear = lambda: os.system('clear')
+clear()
+
+print("\033[31m[*]\033[0m You will be asked to speak for few seconds for the recognition of the speaker.")
+
 import time
 import shutil
 import numpy as np
@@ -12,6 +15,8 @@ from pathlib import Path
 from IPython.display import display, Audio
 from users import user_0, user_1, user_2, user_new
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 DATASET_ROOT = "/Users/harshitruwali/Desktop/sem3-pro/"
 NOISE_SUBFOLDER = "noise"
 DATASET_NOISE_PATH = os.path.join(DATASET_ROOT, NOISE_SUBFOLDER)
@@ -21,7 +26,9 @@ SHUFFLE_SEED = 43
 BATCH_SIZE = 128
 SCALE = 0.5
 
-print("Get Ready!")
+print("\033[31m[*]\033[0m Get Ready!")
+
+time.sleep(5)
 
 """ Taking the voice input """
 
@@ -34,8 +41,8 @@ filename = "predict.wav"
 
 p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
-print("-------------------------------------------------------------------------------------------")
-print('Recording')
+# print("-------------------------------------------------------------------------------------------")
+print("\033[31m[*]\033[0m Recording")
 
 stream = p.open(format=sample_format,
 				channels=channels,
@@ -56,8 +63,8 @@ stream.close()
 # Terminate the PortAudio interface
 p.terminate()
 
-print('Finished recording')
-print("-------------------------------------------------------------------------------------------")
+print("\033[31m[*]\033[0m Finished recording")
+# print("-------------------------------------------------------------------------------------------")
 # Save the recorded data as a WAV file
 wf = wave.open(filename, 'wb')
 wf.setnchannels(channels)
@@ -66,7 +73,7 @@ wf.setframerate(fs)
 wf.writeframes(b''.join(frames))
 wf.close()
 
-
+print("\033[31m[*]\033[0m Processing")
 """Pre-processing Noise"""
 
 # If folder noise, does not exist, create it, otherwise do nothing
@@ -100,7 +107,7 @@ for subdir in os.listdir(DATASET_NOISE_PATH):
 			if filepath.endswith(".wav")
 		]
 
-print("Found {} files belonging to {} directories".format(len(noise_paths), len(os.listdir(DATASET_NOISE_PATH))))
+# print("Found {} files belonging to {} directories".format(len(noise_paths), len(os.listdir(DATASET_NOISE_PATH))))
 
 command = (
 	"for dir in `ls -1 " + DATASET_NOISE_PATH + "`; do "
@@ -137,11 +144,11 @@ for path in noise_paths:
 		noises.extend(sample)
 noises = tf.stack(noises)
 
-print(
-	"{} noise files were split into {} noise samples where each is {} sec. long".format(
-		len(noise_paths), noises.shape[0], noises.shape[1] // SAMPLING_RATE
-	)
-)
+# print(
+# 	"{} noise files were split into {} noise samples where each is {} sec. long".format(
+# 		len(noise_paths), noises.shape[0], noises.shape[1] // SAMPLING_RATE
+# 	)
+# )
 
 def paths_and_labels_to_dataset(audio_paths, labels):
 	"""Constructs a dataset of audios and labels."""
@@ -216,26 +223,29 @@ def predict(path, labels):
 		labels = labels.numpy()[rnd]
 		y_pred = np.argmax(y_pred, axis=-1)[rnd]
 
+		print("\033[31m[*]\033[0m Prediction")
+
 		for index in range(1):
 			print(
-				"Predicted:\33{} {}\33[0m".format(
+				"\033[31m[*]\033[0m Predicted:\33{} {}\33[0m".format(
 					"[92m",y_pred[index]
 				)
 			)
 			if y_pred[index] == 0:
-				print("Welcome user 0")
+				print("\033[31m[*]\033[0m Voice Assistant triggered")
+				print("\033[31m[*]\033[0m Welcome user 0")
 				user_0.predict()
 			elif y_pred[index] == 1:
-				print("Welcome user 1")
+				print("\033[31m[*]\033[0m Welcome user 1")
 				user_1.predict()
 			elif y_pred[index] == 2:
-				print("Welcome user 2")
+				print("\033[31m[*]\033[0m Welcome user 2")
 				user_2.predict()
 			elif y_pred[index] == 3:
-				print("Welcome user 3")
+				print("\033[31m[*]\033[0m Welcome user 3")
 				user_3.predict()
 			else:
-				print("Welcome new user")
+				print("\033[31m[*]\033[0m Welcome new user")
 				user_new.predict()
 
 
