@@ -17,7 +17,7 @@ from users import user_0, user_1, user_2, user_new
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-DATASET_ROOT = "/Users/harshitruwali/Desktop/sem3-pro/"
+DATASET_ROOT = ""  # To pass the path to noise folder
 NOISE_SUBFOLDER = "noise"
 DATASET_NOISE_PATH = os.path.join(DATASET_ROOT, NOISE_SUBFOLDER)
 

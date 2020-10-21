@@ -16,7 +16,7 @@ And save the `model.h5` file locally.
 ### Working
 
 For the working of the Voice Assistant, get the `model.h5`  you trained from the Speaker Identificatio Repo. <br>
-And now put the `model.h5` file and the *Noise Folder* from dataset in the Personalised-voice-assistant folder. <br>
+And now put the `model.h5` file and the *noise* folder from dataset in the Personalised-voice-assistant folder. <br>
 Now you have got to modify the files in the *users folder*.<br>
 You may personalise the functions and the users files to match the numbers of the users.<br>
 
@@ -27,6 +27,8 @@ For example if you have trained the model for 3 users, then keep/edit the `user_
 Install the requirements by running:
 
 `pip install -r requirements.txt` or `pip3 install -r requirements.txt`
+
+Change the path to *noise* dataset in `predict.py` file to your own path to *noise* folder.
 
 After installing the requirements and doing the necessary changes. Run: <br>
 
