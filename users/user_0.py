@@ -2,7 +2,7 @@ import os
 import sys
 import speech_recognition as sr
 import webbrowser
-import time
+from time import strftime
 import pyjokes
 import subprocess
 import datetime
@@ -155,18 +155,15 @@ def main(command):
 			while t==0:
 				audio = w.listen(source)
 				try:
-					query =w.recognize_google(audio)
-					print('you said :{}'.format(text))
+					query =w.recognize_google(audio).lower()
+					print('you said :{}'.format(query))
 					t=1
 
 				except:
 					print('Not understandable')
 					print('Try again')
-					t==0
+					t=0
 
-		#query = listen()
-		# query = text
-		# safari_path = r'/Applications/Safari.app %s'
 		webbrowser.open("https://google.com/search?q=%s" % query)
 	
 	elif "bye" or "exit" in command:
