@@ -4,6 +4,9 @@
 # Generated wav files at the time of testing 
 *.wav
 
+# Noise folder
+/noise
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

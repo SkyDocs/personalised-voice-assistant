@@ -17,12 +17,12 @@ def bot(talk):
 	print(talk)
 
 	engine = pyttsx3.init()
-	rate = engine.getProperty('rate')
-	engine.setProperty('rate', 180)
-	volume = engine.getProperty('volume')
-	engine.setProperty('volume', 1.0)
+	# rate = engine.getProperty('rate')
+	# engine.setProperty('rate', 180)
+	# volume = engine.getProperty('volume')
+	# engine.setProperty('volume', 1.0)
 	sound = engine.getProperty('voices')
-	# engine.setProperty('voice', sound[33].id)
+	engine.setProperty('voice', sound[33].id)
 
 	for i in str(talk).splitlines():
 		engine.say(talk)

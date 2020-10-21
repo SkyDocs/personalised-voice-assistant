@@ -171,6 +171,15 @@ def main(command):
 		local_time = local_time * 60
 		time.sleep(local_time)
 		bot(text)
+		
+	elif "remind" in command:
+		bot("What shall I remind you about?")
+		text = listen()
+		bot("In how many minutes ?")
+		local_time = float(listen())
+		local_time = local_time * 60
+		time.sleep(local_time)
+		bot(text)
 	
 	elif "bye" in command:
 		bot("Bye!")
