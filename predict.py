@@ -8,7 +8,7 @@ import tensorflow as tf
 from tensorflow import keras
 from pathlib import Path
 from IPython.display import display, Audio
-from users import user_0, user_1, user_2, user_3, user_new
+from users import user_0, user_1, user_2, user_new
 
 print("You will be asked to speak for few seconds for the recognition of the speaker")
 DATASET_ROOT = "/Users/harshitruwali/Desktop/16000_pcm_speeches"
