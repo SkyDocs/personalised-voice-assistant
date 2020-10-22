@@ -11,8 +11,6 @@ import webbrowser
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 
-
-
 def bot(talk):
 	print(talk)
 
@@ -22,6 +20,7 @@ def bot(talk):
 	volume = engine.getProperty('volume')
 	engine.setProperty('volume', 1.0)
 	sound = engine.getProperty('voices')
+	engine.setProperty('voice',sound[33].id)
 
 	for i in str(talk).splitlines():
 		engine.say(talk)
@@ -32,7 +31,7 @@ def listen():
 	r = sr.Recognizer()
 	with mic as source:
 		print("say something")
-		audio = r.listen(source)
+		audio = r.listen(source, phrase_time_limit = 5)
 	
 	try:
 		command = r.recognize_google(audio).lower()
@@ -41,7 +40,7 @@ def listen():
 	
 	except sr.UnknownValueError:
 		print("Error occured, try again")
-		#bot("Sorry I did not get that. Please try again.")
+		bot("Sorry I did not get that. Please try again.")
 		command = listen()
 
 	return command	  
@@ -71,7 +70,7 @@ def main(command):
 	elif "joke" in command:
 		bot(pyjokes.get_joke())		
 
-	elif "open google" in command:
+	elif "google" in command:
 		webbrowser.open("https://www.google.com")
 		bot("Check your default web browser!")
 
@@ -79,7 +78,7 @@ def main(command):
 		now = datetime.datetime.now()
 		bot('Current time is %d hours %d minutes' % (now.hour, now.minute))
 
-	elif "play the video" in command:
+	elif "play video" in command:
 
 		bot("What to play?")
 		q=sr.Recognizer()
@@ -87,7 +86,7 @@ def main(command):
 		with sr.Microphone() as source:
 			print("Search for the term:")
 			while t==0:
-				audio =q.listen(source)
+				audio =q.listen(source, phrase_time_limit = 5)
 				try:
 					query = q.recognize_google(audio)
 					print('you said :{}'.format(text))
@@ -99,12 +98,30 @@ def main(command):
 		url = "https://www.youtube.com/results?search_query=" + query 
 		webbrowser.open(url)
 
-
+	elif "write note" in command: 
+            bot("What should i write, sir") 
+            note = listen() 
+            file = open('avish.txt', 'w') 
+            bot("Sir, Should i include date and time") 
+            snfm = listen() 
+            if 'yes' in snfm or 'sure' in snfm: 
+                strTime = datetime.datetime.now().strftime("% H:% M:% S") 
+                file.write(strTime) 
+                file.write(" :- ") 
+                file.write(note) 
+            else: 
+                file.write(note) 
 
 	elif "gmail" in command:
 		bot("sure, opening gmail")
 		url_mail = "https://www.gmail.com"
 		webbrowser.open(url_mail)
+
+	elif "show note" in command: 
+            bot("Showing Notes") 
+            file = open("avish.txt", "r")  
+            print(file.read()) 
+            bot(file.read(6)) 
 
 	elif "wikipedia" in command:
 		bot("Sure! Here you go.")
@@ -124,11 +141,10 @@ def main(command):
 		except Exception as e:
 			print(e)
 
-
 	elif "map" in command:
 		bot("opening maps powered by google")
-		maps_url = "google.com/maps"
-		webbrowser.open(maps_url)
+		maps_url = "https://www.google.co.in/maps"
+		webbrowser.open(maps_url) 
 
 	elif "shutdown" in command:
 		bot("You are going to poweroff your system. Are you sure?")
@@ -148,30 +164,24 @@ def main(command):
 		t=0
 
 		with sr.Microphone() as source:
-			print('Search for the term:')
+				print('Search for the term:')
+				print(t)
 			
-			while t==0:
-				audio = w.listen(source)
-				try:
-					query =w.recognize_google(audio).lower()
-					print('you said :{}'.format(query))
-					t=1
+				while t==0:
+					audio = w.listen(source, phrase_time_limit = 5)
+					try:
+						print('in try block')
+						query = w.recognize_google(audio).lower()
+						print('you said :{}'.format(query))
+						t=1
 
-				except:
-					print('Not understandable')
-					print('Try again')
-					t=0
+					except:
+						print('Not understandable')
+						print('Try again')
+						t=0
 
 		webbrowser.open("https://google.com/search?q=%s" % query)
-	elif "remind" in command:
-		bot("What shall I remind you about?")
-		text = listen()
-		bot("In how many minutes ?")
-		local_time = float(listen())
-		local_time = local_time * 60
-		time.sleep(local_time)
-		bot(text)
-		
+
 	elif "remind" in command:
 		bot("What shall I remind you about?")
 		text = listen()
