@@ -101,7 +101,7 @@ def main(command):
 	elif "write note" in command: 
             bot("What should i write, sir") 
             note = listen() 
-            file = open('avish.txt', 'w') 
+            file = open('user.txt', 'w') 
             bot("Sir, Should i include date and time") 
             snfm = listen() 
             if 'yes' in snfm or 'sure' in snfm: 
@@ -119,7 +119,7 @@ def main(command):
 
 	elif "show note" in command: 
             bot("Showing Notes") 
-            file = open("avish.txt", "r")  
+            file = open("user.txt", "r")  
             print(file.read()) 
             bot(file.read(6)) 
 
