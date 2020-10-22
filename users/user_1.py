@@ -92,12 +92,12 @@ def main(command):
 				audio =q.listen(source)
 				try:
 					query = q.recognize_google(audio)
-					print('you said :{}'.format(text))
+					print('you said :{}'.format(query))
 					t=1
 				except:
 					print('Not understandable')
 					print('Try again')
-					t==0
+					t=0
 		url = "https://www.youtube.com/results?search_query=" + query 
 		webbrowser.open(url)
 
