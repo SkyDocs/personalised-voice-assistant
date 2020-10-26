@@ -76,6 +76,9 @@ def main(command):
     elif "your name" in command:
         bot("My name is Bella.")
 
+    elif "feature" in command:
+        bot("I have ample of features, Some of my features are given below:\n Greetings,\n Play Video,\n Web Search,\n Latest News,\n Add Notes.\nwhy not try something and get started.")
+
     elif "joke" in command:
         bot(pyjokes.get_joke())
 
@@ -179,7 +182,7 @@ def main(command):
             while t == 0:
                 audio = w.listen(source, phrase_time_limit=5)
                 try:
-                    #print('in try block')
+                    # print('in try block')
                     query = w.recognize_google(audio).lower()
                     print('you said :{}'.format(query))
                     t = 1
