@@ -77,7 +77,12 @@ def main(command):
         bot("My name is Bella.")
 
     elif "feature" in command:
-        bot("I have ample of features, Some of my features are given below:\n Greetings,\n Play Video,\n Web Search,\n Latest News,\n Add Notes.\nwhy not try something and get started.")
+        bot("I have ample of features, Some of my features are given below:")
+        bot("Greetings")
+        bot("Play Video")
+        bot("Web Search")
+        bot("Give Latest News")
+        bot("Add Notes....why not try something and get started.")
 
     elif "joke" in command:
         bot(pyjokes.get_joke())
