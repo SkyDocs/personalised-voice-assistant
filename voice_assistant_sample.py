@@ -61,11 +61,14 @@ def main(command):
     if "hello" in command:
         current_time = int(strftime('%H'))
         if current_time < 12:
-            bot("Hello, Good morning, this is your voice assistant, developed by Team skydocs.")
+            bot("Hello, Good morning, this is your voice assistant.")
         elif 12 <= current_time < 16:
-            bot("Hello, Good afternoon, this is your voice assistant, developed by Team skydocs.")
+            bot("Hello, Good afternoon, this is your voice assistant.")
         else:
-            bot("Hello, Good evening, this is your voice assistant, developed by Team skydocs.")
+            bot("Hello, Good evening, this is your voice assistant.")
+
+    elif "who made you" in command:
+        bot("I was developed by a team Skydocs.")
 
     elif "how are you" in command:
         bot("I am great. Hoping the same for you.")
