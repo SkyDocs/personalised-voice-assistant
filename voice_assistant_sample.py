@@ -32,7 +32,7 @@ def listen():
     mic = sr.Microphone()
     r = sr.Recognizer()
     with mic as source:
-        print("say something")
+        print("say something...")
         audio = r.listen(source, phrase_time_limit=5)
 
     try:
@@ -133,12 +133,6 @@ def main(command):
         bot("sure, opening gmail")
         url_mail = "https://www.gmail.com"
         webbrowser.open(url_mail)
-
-    elif "show note" in command:
-        bot("Showing Notes")
-        file = open("user.txt", "r")
-        print(file.read())
-        bot(file.read(6))
 
     elif "wikipedia" in command:
         bot("Sure! Here you go.")
