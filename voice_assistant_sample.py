@@ -73,6 +73,9 @@ def main(command):
     elif "how are you" in command:
         bot("I am great. Hoping the same for you.")
 
+    elif "your name" in command:
+        bot("My name is Bella.")
+
     elif "joke" in command:
         bot(pyjokes.get_joke())
 
