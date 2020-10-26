@@ -77,7 +77,7 @@ def main(command):
         bot("My name is Bella.")
 
     elif "feature" in command:
-        bot("I have ample of features, Some of my features are given below:")
+        bot("I have lot of features, Some of my features are given below:")
         bot("Greetings")
         bot("Play Video")
         bot("Web Search")
