@@ -73,6 +73,17 @@ def main(command):
     elif "how are you" in command:
         bot("I am great. Hoping the same for you.")
 
+    elif "your name" in command:
+        bot("My name is Bella.")
+
+    elif "feature" in command:
+        bot("I have ample of features, Some of my features are given below:")
+        bot("Greetings")
+        bot("Play Video")
+        bot("Web Search")
+        bot("Give Latest News")
+        bot("Add Notes....why not try something and get started.")
+
     elif "joke" in command:
         bot(pyjokes.get_joke())
 
@@ -176,7 +187,7 @@ def main(command):
             while t == 0:
                 audio = w.listen(source, phrase_time_limit=5)
                 try:
-                    #print('in try block')
+                    # print('in try block')
                     query = w.recognize_google(audio).lower()
                     print('you said :{}'.format(query))
                     t = 1
