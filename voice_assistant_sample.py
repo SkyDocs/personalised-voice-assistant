@@ -116,10 +116,10 @@ def main(command):
         webbrowser.open(url)
 
     elif "write note" in command:
-        bot("What should i write, sir")
+        bot("What should i write ?")
         note = listen()
         file = open('user.txt', 'w')
-        bot("Sir, Should i include date and time")
+        bot("Should i include date and time")
         snfm = listen()
         if 'yes' in snfm or 'sure' in snfm:
             strTime = datetime.datetime.now().strftime("% H:% M:% S")
@@ -128,6 +128,12 @@ def main(command):
             file.write(note)
         else:
             file.write(note)
+
+    elif "show note" in command:
+        bot("Showing Notes")
+        file = open("user.txt", "r")
+        print(file.read())
+        bot(file.read(6))
 
     elif "gmail" in command:
         bot("sure, opening gmail")
