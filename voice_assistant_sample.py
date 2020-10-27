@@ -32,7 +32,7 @@ def listen():
     mic = sr.Microphone()
     r = sr.Recognizer()
     with mic as source:
-        print("say something")
+        print("say something...")
         audio = r.listen(source, phrase_time_limit=5)
 
     try:
@@ -77,7 +77,7 @@ def main(command):
         bot("My name is Bella.")
 
     elif "feature" in command:
-        bot("I have ample of features, Some of my features are given below:")
+        bot("I have lot of features, Some of my features are given below:")
         bot("Greetings")
         bot("Play Video")
         bot("Web Search")
@@ -116,10 +116,10 @@ def main(command):
         webbrowser.open(url)
 
     elif "write note" in command:
-        bot("What should i write, sir")
+        bot("What should i write ?")
         note = listen()
         file = open('user.txt', 'w')
-        bot("Sir, Should i include date and time")
+        bot("Should i include date and time")
         snfm = listen()
         if 'yes' in snfm or 'sure' in snfm:
             strTime = datetime.datetime.now().strftime("% H:% M:% S")
@@ -129,16 +129,16 @@ def main(command):
         else:
             file.write(note)
 
-    elif "gmail" in command:
-        bot("sure, opening gmail")
-        url_mail = "https://www.gmail.com"
-        webbrowser.open(url_mail)
-
     elif "show note" in command:
         bot("Showing Notes")
         file = open("user.txt", "r")
         print(file.read())
         bot(file.read(6))
+
+    elif "gmail" in command:
+        bot("sure, opening gmail")
+        url_mail = "https://www.gmail.com"
+        webbrowser.open(url_mail)
 
     elif "wikipedia" in command:
         bot("Sure! Here you go.")
