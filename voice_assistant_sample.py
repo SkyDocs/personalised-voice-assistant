@@ -7,7 +7,6 @@ import pyjokes
 import subprocess
 import datetime
 import pyttsx3
-import wolframalpha
 import webbrowser
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
