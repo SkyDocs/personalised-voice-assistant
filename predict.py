@@ -17,7 +17,7 @@ from users import user_0, user_1, user_2, user_new
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-DATASET_ROOT = "/home/avish/Downloads/personalised-voice-assistant"
+DATASET_ROOT = "" #Path to dataset
 NOISE_SUBFOLDER = "noise"
 DATASET_NOISE_PATH = os.path.join(DATASET_ROOT, NOISE_SUBFOLDER)
 
@@ -233,7 +233,7 @@ def predict(path, labels):
 			)
 			if y_pred[index] == 0:
 				print("\033[31m[*]\033[0m Voice Assistant triggered")
-				print("\033[31m[*]\033[0m Welcome user 0")
+				print("\033[31m[*]\033[0m Welcome user Harshit!")
 				user_0.predict()
 			elif y_pred[index] == 1:
 				print("\033[31m[*]\033[0m Welcome user 1")

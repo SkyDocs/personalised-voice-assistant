@@ -43,6 +43,9 @@ This is a Purely open-source project, and feel free to suggest the changes.<br>
 
 To contribute Fork it, make the changes and push a pull request and we will get back to you.
 
+## Demo
+
+Watch the demo video in [YouTube](https://www.youtube.com/watch?v=n09Z1OQzUiA).
 
 ## License
 
