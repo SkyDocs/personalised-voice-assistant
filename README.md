@@ -32,7 +32,7 @@ Change the path to *noise* dataset in `predict.py` file to your own path to *noi
 
 After installing the requirements and doing the necessary changes. Run: <br>
 
-`python predict.py` or `python3 predict.py` <br>
+`python voice-assistant.py` or `python3 voice-assistant.py` <br>
 
 <br>
 And here you go. Say a few phrases for the model to predict and once predicted, it will welcome with your presonalised results.
