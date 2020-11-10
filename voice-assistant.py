@@ -16,7 +16,6 @@ import webbrowser
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 from subprocess import call
-# import predict
 
 def bot(talk):
 	print(talk)
@@ -74,7 +73,7 @@ def main(command):
 			bot("Hello, Good evening, this is your voice assistant.")
 
 	elif "who made you" in command:
-		bot("I was developed by a team Skydocs.")
+		bot("I was developed by The Team SkyDocs.")
 
 	elif "how are you" in command:
 		bot("I am great. Hoping the same for you.")
@@ -82,18 +81,19 @@ def main(command):
 	elif "your name" in command:
 		bot("My name is Bella.")
 
-	elif "who am I?" in command:
+	elif "who am i" in command:
 		bot("I am the general user. I am not giving the presonalised voice assistant.")
 		bot("To activate the presonalised voice assistant say RECOGNISE")
 
 	elif "feature" in command:
-		bot("Say recognise to recognise the user and give presonalised requests")
 		bot("I have lot of features, Some of my features are given below:")
+		bot("Say recognise to recognise the user and give presonalised results")
 		bot("Greetings")
 		bot("Play Video")
 		bot("Web Search")
 		bot("Give Latest News")
-		bot("Add Notes....why not try something and get started.")
+		bot("Add Notes and many more...")
+		bot("why not try something and get started.")
 
 	elif "recognise" in command:
 		bot("You will be redirected to the recognition part!")
@@ -179,29 +179,31 @@ def main(command):
 			t = 0
 			with sr.Microphone() as source:
 				while t == 0:
-				audio = q.listen(source, phrase_time_limit=5)
-				try:
-					res = q.recognize_google(audio)
-					if "yes" in res:
-						bot("What should I write?")
-						note = q.listen(source)
-						note = q.recognize_google(note)
-						file = open('user.txt', 'w')
-						bot("Should I set the current date and time as the default filename?")
-						date_time_ans = q.listen(source)
-						date_time_ans = q.recognize_google(date_time_ans)
-						if "yes" in date_time_ans:
-							file = open("date_time_ans.txt", "w")
-							file.write(note)
+					audio = q.listen(source, phrase_time_limit=5)
+					try:
+						res = q.recognize_google(audio)
+						t = 1
+						if "yes" in res:
+							bot("What should I write?")
+							note = q.listen(source)
+							note = q.recognize_google(note)
+							file = open('user.txt', 'w')
+							bot("Should I set the current date and time as the default filename?")
+							date_time_ans = q.listen(source)
+							date_time_ans = q.recognize_google(date_time_ans)
+							if "yes" in date_time_ans:
+								file = open("date_time_ans.txt", "w")
+								file.write(note)
+							else:
+								file = open("general.txt", "w")
+								file.write(note)
 						else:
-							file = open("general.txt", "w")
-							file.write(note)
-					else:
-						bot("Okay, exiting the note section")
-				except:
-					print('Not understandable')
-					print('Try again')
-					t = 0
+							bot("Okay, exiting the note section")
+					except:
+						print('Not understandable')
+						print('Try again')
+						t = 0
+			bot("A new note is created")
 
 	elif "gmail" in command:
 		bot("sure, opening gmail")
