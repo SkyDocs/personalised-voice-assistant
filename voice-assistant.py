@@ -61,6 +61,22 @@ def listen():
 # 			return True
 # 	return False
 
+def write_note():
+	mic = sr.Microphone()
+	r = sr.Recognizer()
+	with mic as source:
+		print("What to write in the note!")
+		note = r.listen(source)
+
+	try:
+		note = r.recognize_google(note).lower()
+		print("The note will be written as: " + note)
+	except sr.UnknownValueError:
+		print("Sorry I didn't get you. Kindly say again.")
+		note = write_note()
+
+	return note
+
 
 def main(command):
 	if "hello" in command:
@@ -153,24 +169,15 @@ def main(command):
 		webbrowser.open(url)
 
 	elif "write note" in command:
-		bot("What should i write ?")
-		note = listen()
-		file = open('user.txt', 'w')
-		bot("Should i include date and time")
-		snfm = listen()
-		if 'yes' in snfm or 'sure' in snfm:
-			strTime = datetime.datetime.now().strftime("% H:% M:% S")
-			file.write(strTime)
-			file.write(" :- ")
-			file.write(note)
-		else:
-			file.write(note)
+		bot("What should I write?")
+		note = write_note()
+		file = open('general.txt', 'w')
+		file.write(note)
 
 	elif "show notes" in command:
 		bot("Searching for Notes")
 		try:
-			file = open("user.txt", "r")
-			print(file.read())
+			file = open("general.txt", "r")
 			bot(file.read())
 		except FileNotFoundError:
 			bot("No notes are available.")
@@ -185,25 +192,17 @@ def main(command):
 						t = 1
 						if "yes" in res:
 							bot("What should I write?")
-							note = q.listen(source)
-							note = q.recognize_google(note)
-							file = open('user.txt', 'w')
-							bot("Should I set the current date and time as the default filename?")
-							date_time_ans = q.listen(source)
-							date_time_ans = q.recognize_google(date_time_ans)
-							if "yes" in date_time_ans:
-								file = open("date_time_ans.txt", "w")
-								file.write(note)
-							else:
-								file = open("general.txt", "w")
-								file.write(note)
+							file = open('general.txt', 'w')
+							note = write_note()
+							file.write(note)
+							print("A new note is created!")
 						else:
 							bot("Okay, exiting the note section")
 					except:
 						print('Not understandable')
 						print('Try again')
 						t = 0
-			bot("A new note is created")
+			bot("A new note is created!")
 
 	elif "gmail" in command:
 		bot("sure, opening gmail")

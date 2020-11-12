@@ -241,9 +241,6 @@ def predict(path, labels):
 			elif y_pred[index] == 2:
 				print("\033[31m[*]\033[0m Welcome user 2")
 				user_2.predict()
-			elif y_pred[index] == 3:
-				print("\033[31m[*]\033[0m Welcome user 3")
-				user_3.predict()
 			else:
 				print("\033[31m[*]\033[0m Welcome new user")
 				user_new.predict()
