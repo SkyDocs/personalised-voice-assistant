@@ -13,6 +13,8 @@ import tensorflow as tf
 from tensorflow import keras
 from pathlib import Path
 from IPython.display import display, Audio
+import sys
+sys.path.insert(0, "../")
 from users import user_0, user_1, user_2, user_new
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'

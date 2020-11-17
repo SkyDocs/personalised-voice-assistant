@@ -1,10 +1,12 @@
 # Personalised Voice Assistant
 
-This is a multi-user personalied Voice Assistant, unlike Google Assistant or Alexa or Siri.<br>
+A Single Personalised Voice Assistant for Multiple users.<br>
 
-They tend to recognise only single user's voice and work on their commands only.<br>
+Alexa listens to all and functions to their voice, but lacks the personalised results.<br>
 
-But this voice assistant can function for multiple users. Say 4 to 5 members.<br>
+But this overcamed that issue.<br>
+	-> Functions on every ones voice.<br>
+	-> Gives pesonalised results when triggred to.
 
 ## Usage
 
@@ -30,12 +32,18 @@ Install the requirements by running:
 
 Change the path to *noise* dataset in `predict.py` file to your own path to *noise* folder.
 
-After installing the requirements and doing the necessary changes. Run: <br>
+After installing the requirements and doing the necessary changes. 
 
-`python voice-assistant.py` or `python3 voice-assistant.py` <br>
+#### CLI
+
+Run:
+
+`python cli/voice_assistant.py` or `python3 cli/voice_assistant.py` <br>
 
 <br>
-And here you go. Say a few phrases for the model to predict and once predicted, it will welcome with your presonalised results.
+And here you go. <br>
+Have a general Voice Assistant or say *recognise* to trigger the recognition process. <br>
+Say a few phrases when prompted. And **boom!** You got your own Personalised Voice Assistant Triggred.
 
 ## Contribution
 
