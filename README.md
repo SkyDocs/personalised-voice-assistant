@@ -1,4 +1,4 @@
-# Personalised Voice Assistant
+# Personalised Voice Assistant Beta
 
 A Single Personalised Voice Assistant for Multiple users.<br>
 
@@ -39,6 +39,13 @@ After installing the requirements and doing the necessary changes.
 Run:
 
 `python cli/voice_assistant.py` or `python3 cli/voice_assistant.py` <br>
+
+#### GUI
+
+Run: 
+
+`python gui/gui.py` or `python3 gui/gui.py`<br>
+
 
 And here you go. <br>
 
