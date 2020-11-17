@@ -4,9 +4,9 @@ A Single Personalised Voice Assistant for Multiple users.<br>
 
 Alexa listens to all and functions to their voice, but lacks the personalised results.<br>
 
-But this overcamed that issue.<br>
-	-> Functions on every ones voice.<br>
-	-> Gives pesonalised results when triggred to.
+But this overcamed that issue.
+ -  Functions on every ones voice. 	
+ -  Gives pesonalised results when triggred to.
 
 ## Usage
 
@@ -40,10 +40,12 @@ Run:
 
 `python cli/voice_assistant.py` or `python3 cli/voice_assistant.py` <br>
 
-<br>
 And here you go. <br>
-Have a general Voice Assistant or say *recognise* to trigger the recognition process. <br>
-Say a few phrases when prompted. And **boom!** You got your own Personalised Voice Assistant Triggred.
+
+Have a general Voice Assistant or say "recognise" to trigger the recognition process. <br>
+
+Say a few phrases when prompted. And Boom! <br>
+You got your own Personalised Voice Assistant Triggred.
 
 ## Contribution
 
