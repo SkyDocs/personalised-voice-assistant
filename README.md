@@ -1,4 +1,8 @@
-# Personalised Voice Assistant Beta
+# Personalised Voice Assistant - Beta
+
+This is the Beta Version. Might have some bugs in it. 
+
+See the Stable [version](https://github.com/SkyDocs/personalised-voice-assistant).
 
 A Single Personalised Voice Assistant for Multiple users.<br>
 
@@ -44,7 +48,7 @@ Run:
 
 Run: 
 
-`python gui/gui.py` or `python3 gui/gui.py`<br>
+`python gui/voice_assistant.py` or `python3 gui/voice_assistant.py`<br>
 
 
 And here you go. <br>
