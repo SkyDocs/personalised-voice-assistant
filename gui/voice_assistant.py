@@ -13,6 +13,7 @@ import webbrowser
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 from subprocess import call
+from tkinter import *
 
 def bot(talk):
 	print(talk)
@@ -31,53 +32,45 @@ def bot(talk):
 
 
 def listen():
+	Label(root, text = "General Voice Assistant triggered.").pack()
+	Label(root, text ="[*] Say Something...").pack()
 	mic = sr.Microphone()
 	r = sr.Recognizer()
 	with mic as source:
-		print("\033[31m[*]\033[0m Say Something...")
+		print("1")
 		audio = r.listen(source, phrase_time_limit=5)
 
 	try:
 		command = r.recognize_google(audio).lower()
-		print("You said : " + command)
+		Label(root, text ="You said : " + command).pack()
 		# main(command)
 
 	except sr.UnknownValueError:
-		# print("Error occured, try again")
-		print("Sorry I did not get that. Please try again.")
+		# Label("Error occured, try again")
+		Label(root,text = "Sorry I did not get that. Please try again.").pack()
 		command = listen()
 
 	return command
 
-# def activate(talk):
-# 	wake_words = {'ok siri'}
-
-# 	talk = talk.lower()
-# 	for phrase in wake_words:
-# 		if phrase in talk:
-# 			return True
-# 	return False
 
 def write_note():
 	mic = sr.Microphone()
 	r = sr.Recognizer()
 	with mic as source:
-		print("What to write in the note!")
+		Label(root, text = "What to write in the note!").pack()
 		note = r.listen(source)
 
 	try:
 		note = r.recognize_google(note).lower()
-		print("The note will be written as: " + note)
+		Label(root, text = "The note will be written as: " + note).pack()
 	except sr.UnknownValueError:
-		print("Sorry I didn't get you. Kindly say again.")
+		Label(root, text = "Sorry I didn't get you. Kindly say again.").pack()
 		note = write_note()
 
 	return note
 
 
-def main():
-	print("\033[31m[*] General Voice Assistant triggered.\033[0m")
-	command = listen()
+def main(command):
 	if "hello" in command:
 		current_time = int(strftime('%H'))
 		if current_time < 12:
@@ -131,16 +124,16 @@ def main():
 		q = sr.Recognizer()
 		t = 0
 		with sr.Microphone() as source:
-			print("Search for the term:")
+			Label(root, text = "Search for the term:").pack()
 			while t == 0:
 				audio = q.listen(source, phrase_time_limit=5)
 				try:
 					query = q.recognize_google(audio)
-					print('you said :{}'.format(query))
+					Label(root, text = 'you said :{}'.format(query)).pack()
 					t = 1
 				except:
-					print('Not understandable')
-					print('Try again')
+					Label(root, text = 'Not understandable').pack()
+					Label(root, text = 'Try again').pack()
 					t = 0
 		url = "https://www.youtube.com/results?search_query=" + query
 		webbrowser.open(url)
@@ -151,18 +144,18 @@ def main():
 		q = sr.Recognizer()
 		t = 0
 		with sr.Microphone() as source:
-			print("search for the term:")
+			Label(root, text ="search for the term:").pack()
 			while t == 0:
 				audio = q.listen(source, phrase_time_limit=5)
 				try:
 					query = q.recognize_google(audio)
-					print('you said :{}'.format(query))
+					Label(root, text = 'you said :{}'.format(query)).pack()
 					bot('Here you go')
 					bot('Happy shoping!')
 					t = 1
 				except:
-					print('Not understandable')
-					print('Try again')
+					Label(root, text = 'Not understandable').pack()
+					Label(root, text = 'Try again').pack()
 					t = 0
 		url = "https://www.amazon.in/s?k=" + query
 		webbrowser.open(url)
@@ -194,12 +187,12 @@ def main():
 							file = open('general.txt', 'w')
 							note = write_note()
 							file.write(note)
-							print("A new note is created!")
+							Label(root, text = "A new note is created!").pack()
 						else:
-							bot("Okay, exiting the note section")
+							bot(root, text = "Okay, exiting the note section").pack()
 					except:
-						print('Not understandable')
-						print('Try again')
+						Label(root, text = 'Not understandable').pack()
+						Label(root, text = 'Try again').pack()
 						t = 0
 			bot("A new note is created!")
 
@@ -224,7 +217,7 @@ def main():
 			for news in news_list[:15]:
 				bot(news.title.text.encode('utf-8'))
 		except Exception as e:
-			print(e)
+			Label(root,text = e).pack()
 
 	elif "map" in command:
 		bot("opening maps powered by google")
@@ -249,20 +242,20 @@ def main():
 		t = 0
 
 		with sr.Microphone() as source:
-			print('Search for the term:')
-			# print(t)
+			Label(root, text = 'Search for the term:').pack()
+			# Label(t)
 
 			while t == 0:
 				audio = w.listen(source, phrase_time_limit=5)
 				try:
-					# print('in try block')
+					# Label('in try block')
 					query = w.recognize_google(audio).lower()
-					print('you said :{}'.format(query))
+					Label(root, text = 'you said :{}'.format(query)).pack()
 					t = 1
 
 				except:
-					print('Not understandable')
-					print('Try again')
+					Label(root, text = 'Not understandable').pack()
+					Label(root, text = 'Try again').pack()
 					t = 0
 
 		webbrowser.open("https://google.com/search?q=%s" % query)
@@ -286,3 +279,26 @@ def main():
 
 	else:
 		bot("I am sorry, I am unable to process your request.")
+
+
+def quit():
+    sys.exit()
+    root.quit()
+
+
+def start():
+	main(listen())
+	# root.after(2000, start)  # reschedule event in 2 seconds
+
+root = Tk()
+
+root.geometry("400x300")
+
+
+# root.after(2000, start)
+
+start = Button(root, text ="Start the Voice Assistant", command = start).pack()
+
+Button(root, text="Quit", command=quit).place(x=200, y=270)
+
+root.mainloop()
