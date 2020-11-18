@@ -14,6 +14,7 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 from subprocess import call
 from tkinter import *
+import threading
 
 def bot(talk):
 	print(talk)
@@ -32,8 +33,8 @@ def bot(talk):
 
 
 def listen():
-	Label(root, text = "General Voice Assistant triggered.").pack()
-	Label(root, text ="[*] Say Something...").pack()
+	# Label(root, text = "General Voice Assistant triggered.").pack()
+	# Label(root, text ="[*] Say Something...").pack()
 	mic = sr.Microphone()
 	r = sr.Recognizer()
 	with mic as source:
@@ -282,12 +283,32 @@ def main(command):
 
 
 def quit():
-    sys.exit()
-    root.quit()
+	sys.exit()
+	root.quit()
 
+# def start_label():
+# 	Label(root, text = "General Voice Assistant triggered.").pack()
+# 	Label(root, text ="[*] Say Something...").pack()
 
 def start():
+	Label(root, text = "General Voice Assistant triggered.").pack()
+	Label(root, text ="[*] Say Something...").pack()
+	root.update()
+	# root.after(1000, refresh)
+
+
+	# def _thread_function(func):
+	# 	func()
+	# 	unset_labels()
+		
+	# start_label()
+	# threading.Thread(
+	# 	target=_thread_function,
+	# 	daemon=True
+	# 	).start()
+
 	main(listen())
+	
 	# root.after(2000, start)  # reschedule event in 2 seconds
 
 root = Tk()
