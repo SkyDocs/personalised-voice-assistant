@@ -119,7 +119,8 @@ class VoiceAssistant():
 
 		elif "recognise" in command:
 			vs.bot("You will be redirected to the recognition part!")
-			call(["python", "predict.py"])
+			# call(["python", "predict.py"])
+			import predict
 
 		elif "joke" in command:
 			vs.bot(pyjokes.get_joke())
@@ -293,3 +294,11 @@ class VoiceAssistant():
 
 		else:
 			vs.bot("I am sorry, I am unable to process your request.")
+
+
+# while True:
+# 	main(listen())
+
+vs = VoiceAssistant()
+while True:
+	vs.listen()
