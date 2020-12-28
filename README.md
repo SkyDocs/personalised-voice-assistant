@@ -32,13 +32,13 @@ Install the requirements by running:
 
 Change the path to *noise* dataset in `predict.py` file to your own path to *noise* folder.
 
-After installing the requirements and doing the necessary changes. 
+After installing the requirements and doing the necessary changes.
 
 #### CLI
 
 Run:
 
-`python cli/voice_assistant.py` or `python3 cli/voice_assistant.py` <br>
+`python main.py` or `python3 main.py` <br>
 
 And here you go. <br>
 
