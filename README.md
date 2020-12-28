@@ -1,6 +1,6 @@
-# Personalised Voice Assistant - Beta
+# Personalised Voice Assistant - GUI
 
-This is the Beta Version. Might have some bugs in it. 
+This is the Beta Version. Might have some bugs in it.
 
 See the Stable [version](https://github.com/SkyDocs/personalised-voice-assistant).
 
@@ -36,7 +36,7 @@ Install the requirements by running:
 
 Change the path to *noise* dataset in `predict.py` file to your own path to *noise* folder.
 
-After installing the requirements and doing the necessary changes. 
+After installing the requirements and doing the necessary changes.
 
 #### CLI
 
@@ -46,7 +46,7 @@ Run:
 
 #### GUI
 
-Run: 
+Run:
 
 `python gui/voice_assistant.py` or `python3 gui/voice_assistant.py`<br>
 
