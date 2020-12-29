@@ -38,7 +38,7 @@ After installing the requirements and doing the necessary changes.
 
 Run:
 
-`python cli/voice_assistant.py` or `python3 cli/voice_assistant.py` <br>
+`python voice_assistant_cli.py` or `python3 voice_assistant_cli.py` <br>
 
 And here you go. <br>
 

@@ -2,8 +2,6 @@ import os
 clear = lambda: os.system('clear')
 clear()
 
-print("\033[31m[*] General Voice Assistant triggered.\033[0m")
-
 import sys
 import speech_recognition as sr
 import webbrowser
@@ -22,7 +20,7 @@ class VoiceAssistant():
 
 	def bot(self, talk):
 		print(talk)
-
+		print("###")
 		engine = pyttsx3.init()
 		rate = engine.getProperty('rate')
 		engine.setProperty('rate', 160)
@@ -37,6 +35,7 @@ class VoiceAssistant():
 
 
 	def listen(self):
+		vs = VoiceAssistant()
 		mic = sr.Microphone()
 		r = sr.Recognizer()
 		with mic as source:
@@ -46,25 +45,14 @@ class VoiceAssistant():
 		try:
 			command = r.recognize_google(audio).lower()
 			print("You said : " + command)
-			vs = VoiceAssistant()
 			vs.main(command)
 			# main(command)
 
 		except sr.UnknownValueError:
 			# print("Error occured, try again")
 			print("Sorry I did not get that. Please try again.")
-			vs = VoiceAssistant()
 			command = vs.listen()
 
-
-	# def activate(talk):
-	# 	wake_words = {'ok siri'}
-
-	# 	talk = talk.lower()
-	# 	for phrase in wake_words:
-	# 		if phrase in talk:
-	# 			return True
-	# 	return False
 
 	def write_note(self):
 		mic = sr.Microphone()
@@ -119,8 +107,15 @@ class VoiceAssistant():
 
 		elif "recognise" in command:
 			vs.bot("You will be redirected to the recognition part!")
-			# call(["python", "predict.py"])
-			import predict
+			cur_dir = os.getcwd()
+			parent_dir = os.path.dirname(cur_dir)
+			if (cur_dir == os.path.join(parent_dir, "cli")):
+				# print('found')
+				pass
+			else:
+				os.chdir("cli")
+				# print('done')
+			call(["python", "predict.py"])
 
 		elif "joke" in command:
 			vs.bot(pyjokes.get_joke())
@@ -296,9 +291,3 @@ class VoiceAssistant():
 			vs.bot("I am sorry, I am unable to process your request.")
 
 
-# while True:
-# 	main(listen())
-
-vs = VoiceAssistant()
-while True:
-	vs.listen()
