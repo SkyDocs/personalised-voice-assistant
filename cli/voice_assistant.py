@@ -113,6 +113,14 @@ def main(command):
 
 	elif "recognise" in command:
 		bot("You will be redirected to the recognition part!")
+		cur_dir = os.getcwd()
+		parent_dir = os.path.dirname(cur_dir)
+		if (cur_dir == os.path.join(parent_dir, "cli")):
+			# print('found')
+			pass
+		else:
+			os.chdir("cli")
+			# print('done')
 		call(["python", "predict.py"])
 
 	elif "joke" in command:
