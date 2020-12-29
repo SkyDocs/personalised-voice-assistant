@@ -10,6 +10,10 @@ But this overcamed that issue.
 
 ## Usage
 
+This branch is more efficient but the personalised results are less. <br>
+
+For having more personalised results check out the [more-personalised](https://github.com/SkyDocs/personalised-voice-assistant/tree/more-personalised) branch of the repo.
+
 ### Training of the Voice of the Users
 
 You first have to train the Model for the recognisation of the speakers, which you may train from the SkyDocs Speaker Identification [Repo](https://github.com/SkyDocs/speaker-identification).<br>
