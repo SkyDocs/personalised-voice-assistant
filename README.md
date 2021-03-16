@@ -10,10 +10,6 @@ But this overcamed that issue.
 
 ## Usage
 
-This branch is more efficient but the personalised results are less. <br>
-
-For having more personalised results check out the [more-personalised](https://github.com/SkyDocs/personalised-voice-assistant/tree/more-personalised) branch of the repo.
-
 ### Training of the Voice of the Users
 
 You first have to train the Model for the recognisation of the speakers, which you may train from the SkyDocs Speaker Identification [Repo](https://github.com/SkyDocs/speaker-identification).<br>
@@ -36,13 +32,13 @@ Install the requirements by running:
 
 Change the path to *noise* dataset in `predict.py` file to your own path to *noise* folder.
 
-After installing the requirements and doing the necessary changes.
+After installing the requirements and doing the necessary changes. 
 
 #### CLI
 
 Run:
 
-`python voice_assistant_cli.py` or `python3 voice_assistant_cli.py` <br>
+`python cli/voice_assistant.py` or `python3 cli/voice_assistant.py` <br>
 
 And here you go. <br>
 

@@ -166,9 +166,17 @@ def main(command):
 
 		webbrowser.open("https://google.com/search?q=%s" % query)
 	
+	elif "help" in command:
+		bot("Hey. This is the help function triggred.")
+		bot("I can do the following things:")
+		list = ["do a google search", "open webpages for you", "play videos from YouTube", "tell you the current time", "tell you a joke", "and many more"]
+		for i in list:
+			bot(i + " ")
+		bot("For example: Say 'Do a google search. ")
+
 	elif "bye" or "exit" in command:
-		bot("Bye bye user 1!")
-		bot("Never loose your hope!")
+		bot("Bye bye user!")
+		bot("Hoping you enjoyed the assistant made by Team SkyDocs.")
 		sys.exit()
 		
 	else:
@@ -176,7 +184,8 @@ def main(command):
 
 
 def predict():
-	bot("Welcome user 1. Glad to be back. How may I help you today?")
+	bot("Greetings! You seems to be a new user.")
+	bot("I can do various things. Say help for more details.")
 	while True:
 		main(listen())
 

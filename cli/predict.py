@@ -15,9 +15,7 @@ from pathlib import Path
 from IPython.display import display, Audio
 import sys
 sys.path.insert(0, "../")
-print(os.getcwd())
-print(os.listdir())
-from users import user_0, user_1, user_2
+from users import user_0, user_1, user_2, user_new
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
@@ -246,8 +244,8 @@ def predict(path, labels):
 				print("\033[31m[*]\033[0m Welcome user 2")
 				user_2.predict()
 			else:
-				print("\033[31m[*]\033[0m Sorry User not recognised")
-				pass
+				print("\033[31m[*]\033[0m Welcome new user")
+				user_new.predict()
 
 
 """ Predict """
