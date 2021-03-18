@@ -12,7 +12,7 @@ But this overcamed that issue.
 
 ### Training of the Voice of the Users
 
-You first have to train the Model for the recognisation of the speakers, which you may train from the SkyDocs Speaker Identification [Repo](https://github.com/SkyDocs/speaker-identification).<br>
+You first have to train the Model for the recognisation of the speakers, which you may train from the [SkyDocs Speaker Identification Repo](https://github.com/SkyDocs/speaker-identification).<br>
 And save the `model.h5` file locally.
 
 ### Working
@@ -38,7 +38,7 @@ After installing the requirements and doing the necessary changes.
 
 Run:
 
-`python cli/voice_assistant.py` or `python3 cli/voice_assistant.py` <br>
+`python voice_assistant_cli.py` or `python3 voice_assistant_cli.py` <br>
 
 And here you go. <br>
 
@@ -51,7 +51,7 @@ You got your own Personalised Voice Assistant Triggred.
 
 This is a Purely open-source project, and feel free to suggest the changes.<br>
 
-To contribute Fork it, make the changes and push a pull request and we will get back to you.
+To contribute: Fork it, make the changes and push a pull request and we will get back to you.
 
 ## Demo
 

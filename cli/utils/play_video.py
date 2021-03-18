@@ -1,3 +1,8 @@
+# Firefox won't auto-play the video when opened. 
+# Ref: https://support.mozilla.org/bm/questions/1260002
+
+import re
+import urllib.request
 from cli.utils import bot
 import speech_recognition as sr
 import webbrowser
@@ -18,6 +23,12 @@ def play_video():
 				print('Not understandable')
 				print('Try again')
 				t = 0
-	url = "https://www.youtube.com/results?search_query=" + query
-	webbrowser.open(url)
+
+	query = "https://www.youtube.com/results?search_query=" + query.replace(' ', '+') 
+	html = urllib.request.urlopen(query)
+	url = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+	# print(html)
+	# print(url)
+	# print("http://www.youtube.com/watch?v=" + url[0])
+	webbrowser.open("http://www.youtube.com/watch?v={}".format(url[0]))
 
