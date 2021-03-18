@@ -1,25 +1,24 @@
+import webbrowser
 from cli.utils import bot
 import speech_recognition as sr
-import webbrowser
 
 
-def shop():
-    bot.bot("what you want to shop?")
+def map():
+    bot.bot("opening maps")
     q = sr.Recognizer()
     t = 0
     with sr.Microphone() as source:
-        print("search for the term:")
+        bot.bot("what place you want to search for ?")
+        print("search for the place:")
         while t == 0:
             audio = q.listen(source, phrase_time_limit=5)
             try:
                 query = q.recognize_google(audio)
                 print('you said :{}'.format(query))
-                bot.bot('Here you go')
-                bot.bot('Happy shopping!')
                 t = 1
             except:
                 print('Not understandable')
                 print('Try again')
                 t = 0
-    url = "https://www.amazon.in/s?k=" + query
-    webbrowser.open(url)
+    maps_url = "https://www.google.com/maps?q=" + query
+    webbrowser.open(maps_url)
