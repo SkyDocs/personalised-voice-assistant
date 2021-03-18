@@ -1,5 +1,5 @@
 import speech_recognition as sr
-from users import user
+from cli.utils import user
 
 def listen():
     mic = sr.Microphone()

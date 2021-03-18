@@ -1,5 +1,7 @@
-
 import os
+clear = lambda: os.system('clear')
+clear()
+
 import sys
 import webbrowser
 from time import strftime
@@ -14,8 +16,6 @@ from cli.utils import *
 
 
 def main():
-	clear = lambda: os.system('clear')
-	clear()
 	func(listen.listen())
 
 def func(command):

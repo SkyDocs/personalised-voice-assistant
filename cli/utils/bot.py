@@ -1,5 +1,5 @@
 import pyttsx3
-from users import user
+from cli.utils import user
 
 def bot(talk):
 
