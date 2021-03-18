@@ -15,12 +15,11 @@ from pathlib import Path
 from IPython.display import display, Audio
 import sys
 sys.path.insert(0, "../")
-from users import user_0, user_1, user_2
-from cli import voice_assistant as vs
+from users import user_0, user_1, user_2, user
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-DATASET_ROOT = "../.." #Path to dataset
+DATASET_ROOT = "/Users/harshitruwali/Desktop/personalised-voice-assistant-pro/16000_pcm_speeches/" #Path to dataset
 NOISE_SUBFOLDER = "noise"
 DATASET_NOISE_PATH = os.path.join(DATASET_ROOT, NOISE_SUBFOLDER)
 
@@ -237,20 +236,27 @@ def predict(path, labels):
 			if y_pred[index] == 0:
 				print("\033[31m[*]\033[0m Voice Assistant triggered")
 				print("\033[31m[*]\033[0m Welcome user Harshit!")
-				user_0.predict()
+				user.user = 1
+				time.sleep(2)
+				import voice_assistant_cli
 			elif y_pred[index] == 1:
 				print("\033[31m[*]\033[0m Welcome user 1")
-				user_1.predict()
+				user.user = 2
+				time.sleep(2)
+				import voice_assistant_cli
 			elif y_pred[index] == 2:
 				print("\033[31m[*]\033[0m Welcome user 2")
-				user_2.predict()
+				user.user = 3
+				time.sleep(2)
+				import voice_assistant_cli
 			else:
-				print("\033[31m[*]\033[0m User not recognised!	Returning to the general user!")
-				vs.main()
+				print("\033[31m[*]\033[0m User not recognised! Returning to the general user!")
+				time.sleep(2)
+				import voice_assistant_cli
 
 
 """ Predict """
 path = ["predict.wav"]
 labels = ["unknown"]
-model = tf.keras.models.load_model('../model.h5')
+model = tf.keras.models.load_model('/Users/harshitruwali/Desktop/personalised-voice-assistant-pro/speaker-identification/model.h5')
 predict(path, labels)
