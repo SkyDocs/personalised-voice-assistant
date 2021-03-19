@@ -82,6 +82,9 @@ def func(command):
     elif "shop" in command:
         shop.shop()
 
+    elif "amazon_prime" or "movie" or "web-series" in command:
+        amazon_prime.amazon_prime()
+
     elif "write note" in command:
         bot.bot("What should I write?")
         note = write_note.write_note()
