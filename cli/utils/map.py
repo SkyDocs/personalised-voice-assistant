@@ -4,7 +4,7 @@ import speech_recognition as sr
 
 
 def map():
-    bot.bot("opening maps")
+    bot.bot("opening maps!🗺️")
     q = sr.Recognizer()
     t = 0
     with sr.Microphone() as source:

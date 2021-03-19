@@ -156,6 +156,9 @@ def func(command):
         time.sleep(local_time)
         bot.bot(text)
 
+    elif "calendar" in command:
+        calendar.calendar()
+
     elif "bye" in command:
         bot.bot("Bye!")
         sys.exit()
