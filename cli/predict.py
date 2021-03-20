@@ -14,12 +14,10 @@ from tensorflow import keras
 from pathlib import Path
 from IPython.display import display, Audio
 import sys
-sys.path.insert(0, "../")
-from users import user_0, user_1, user_2, user
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-DATASET_ROOT = "/Users/harshitruwali/Desktop/personalised-voice-assistant-pro/16000_pcm_speeches/" #Path to dataset
+DATASET_ROOT = "" #Path to dataset
 NOISE_SUBFOLDER = "noise"
 DATASET_NOISE_PATH = os.path.join(DATASET_ROOT, NOISE_SUBFOLDER)
 
@@ -258,5 +256,5 @@ def predict(path, labels):
 """ Predict """
 path = ["predict.wav"]
 labels = ["unknown"]
-model = tf.keras.models.load_model('/Users/harshitruwali/Desktop/personalised-voice-assistant-pro/speaker-identification/model.h5')
+model = tf.keras.models.load_model('../model.h5') # path to the saved keras model
 predict(path, labels)
