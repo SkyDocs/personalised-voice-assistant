@@ -1,3 +1,6 @@
+# for this to function you must be logged-in in your default browser
+
+
 from cli.utils import bot
 import webbrowser
 import speech_recognition as sr
@@ -19,5 +22,5 @@ def amazon_prime():
                 print('Not understandable')
                 print('Try again')
                 t = 0
-    url_ott = "https://www.primevideo.com/search/ref=atv_nb_sr?phrase=" + query
+    url_ott = "https://www.primevideo.com/search/?phrase=" + query.replace(" ", "%20") + "&ie=UTF8"
     webbrowser.open(url_ott)
