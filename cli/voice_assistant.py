@@ -39,9 +39,7 @@ def func(command):
         bot.bot("My name is Bella.")
 
     elif "who am i" in command:
-        bot.bot(
-            "I am the general user. I am not giving the presonalised voice assistant.")
-        bot.bot("To activate the presonalised voice assistant say RECOGNISE")
+        whoami.main()
 
     elif "feature" in command:
         bot.bot("I have lot of features, Some of my features are given below:")
