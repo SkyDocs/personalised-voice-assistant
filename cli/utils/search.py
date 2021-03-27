@@ -6,7 +6,7 @@ import speech_recognition as sr
 
 
 def search():
-    bot.bot('What to search? 🔍')
+    bot.bot('What to search?')
     # listen()
     w = sr.Recognizer()
     t = 0

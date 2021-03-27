@@ -1,6 +1,7 @@
 # it is the config file for the current user
 # 0 is for the default user
 # 1 for the 1st and so on...
+# the ids are being updated from the predict.py
 # we assign a id and then update the functions
 # only which needs a user specific response
 # like the bot's response voice

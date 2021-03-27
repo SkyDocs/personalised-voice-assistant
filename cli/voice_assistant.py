@@ -67,8 +67,7 @@ def func(command):
         bot.bot(pyjokes.get_joke())
 
     elif "google" in command:
-        webbrowser.open("https://www.google.com")
-        bot.bot("Check your default web browser!")
+        search.search()
 
     elif 'time' in command:
         now = datetime.datetime.now()
@@ -83,41 +82,8 @@ def func(command):
     elif "prime video" in command:
         amazon_prime.amazon_prime()
 
-    elif "write note" in command:
-        bot.bot("What should I write?")
-        note = write_note.write_note()
-        file = open('general.txt', 'w')
-        file.write(note)
-
     elif "show notes" in command:
-        bot.bot("Searching for Notes")
-        try:
-            file = open("general.txt", "r")
-            bot.bot(file.read())
-        except FileNotFoundError:
-            bot.bot("No notes are available.")
-            bot.bot("Want to create one now?")
-            q = sr.Recognizer()
-            t = 0
-            with sr.Microphone() as source:
-                while t == 0:
-                    audio = q.listen(source, phrase_time_limit=5)
-                    try:
-                        res = q.recognize_google(audio)
-                        t = 1
-                        if "yes" in res:
-                            bot.bot("What should I write?")
-                            file = open('general.txt', 'w')
-                            note = write_note.write_note()
-                            file.write(note)
-                            print("A new note is created!")
-                        else:
-                            bot.bot("Okay, exiting the note section")
-                    except:
-                        print('Not understandable')
-                        print('Try again')
-                        t = 0
-            bot.bot("A new note is created!")
+        notes.main()
 
     elif "gmail" in command:
         bot.bot("sure, opening gmail")
@@ -144,7 +110,6 @@ def func(command):
             bot.bot("You have aborted the process. Returning back to previous state")
             main(listen())
 
-    # google search
     elif 'search' in command:
         search.search()
 

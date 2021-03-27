@@ -15,7 +15,7 @@ def shop():
                 query = q.recognize_google(audio)
                 print('you said :{}'.format(query))
                 bot.bot('Here you go')
-                bot.bot('Happy shopping! 🛍️')
+                bot.bot('Happy shopping!')
                 t = 1
             except:
                 print('Not understandable')
