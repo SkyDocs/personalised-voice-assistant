@@ -55,7 +55,9 @@ To contribute: Fork it, make the changes and push a pull request and we will get
 
 ## Demo
 
-Watch the demo video in [YouTube](https://www.youtube.com/watch?v=n09Z1OQzUiA).
+Watch the demo video.
+
+[![Personalised Voice Assistant Demo Vidoe](https://img.youtube.com/vi/n09Z1OQzUiA/0.jpg)](https://www.youtube.com/watch?v=n09Z1OQzUiA)
 
 ## License
 
