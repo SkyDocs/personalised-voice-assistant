@@ -59,6 +59,11 @@ Watch the demo video.
 
 [![Personalised Voice Assistant Demo Vidoe](https://img.youtube.com/vi/n09Z1OQzUiA/0.jpg)](https://www.youtube.com/watch?v=n09Z1OQzUiA)
 
+## Recognition
+
+This project is selected for the Finals for [Sony's Dreams To Reality contest](https://www.linkedin.com/feed/update/urn:li:activity:6869484493208608768/). 
+
+
 ## License
 
 Licensed under [GNU General Public License v3.0](https://github.com/SkyDocs/personalised-voice-assistant/blob/master/LICENSE)
