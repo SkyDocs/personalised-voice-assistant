@@ -15,19 +15,22 @@ def clear(): return os.system('clear')
 clear()
 
 
-def main():
-    func(listen.listen())
+# def main():
+#     func(listen.listen())
 
 
 def func(command):
     if "hello" in command:
         current_time = int(strftime('%H'))
         if current_time < 12:
-            bot.bot("Hello, Good morning, this is your voice assistant.")
+            # bot.bot("Hello, Good morning, this is your voice assistant.")
+            return ("Hello, Good morning, this is your voice assistant.")
         elif 12 <= current_time < 16:
-            bot.bot("Hello, Good afternoon, this is your voice assistant.")
+            # bot.bot("Hello, Good afternoon, this is your voice assistant.")
+            return ("Hello, Good afternoon, this is your voice assistant.")
         else:
-            bot.bot("Hello, Good evening, this is your voice assistant.")
+            # bot.bot("Hello, Good evening, this is your voice assistant.")
+            return ("Hello, Good evening, this is your voice assistant.")
 
     elif "who made you" in command:
         bot.bot("I was developed by The Team SkyDocs.")
@@ -134,4 +137,5 @@ def func(command):
         sys.exit()
 
     else:
-        bot.bot("I am sorry, I am unable to process your request.")
+        # bot.bot("I am sorry, I am unable to process your request.")
+        return command
