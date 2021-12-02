@@ -34,10 +34,18 @@ Change the path to *noise* dataset in `predict.py` file to your own path to *noi
 
 After installing the requirements and doing the necessary changes. 
 
+#### Cloud
+
+This is work in progress. I am porting it cloud so that, we all can use it via all out devices. 
+
+Server Side (Test Only): `python voice_assistant_server.py`
+Client Side: `python voice_assistant_front_end.py`
+
 #### CLI
 
-Run:
+Clone the repo and then change the branch to local-only, via `git checkout local-only` 
 
+And then run:
 `python voice_assistant_cli.py` or `python3 voice_assistant_cli.py` <br>
 
 And here you go. <br>
