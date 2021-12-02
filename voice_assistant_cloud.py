@@ -1,5 +1,5 @@
 import base64
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect
 from flask_cors import CORS
 
 from cli import voice_assistant as vs
@@ -9,8 +9,16 @@ app = Flask("Personalised Voice Assistant")
 
 CORS(app)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
+def home():
+	return "Personalised Voice Assistant\n"
 
+@app.route('/about', methods=['GET'])
+def about():
+	# return redirect('https://github.com/SkyDocs/personalised-voice-assistant')
+	return "This is Personalised Voice Assistant. For more visit: https://github.com/SkyDocs/personalised-voice-assistant\n"
+
+@app.route('/', methods=['POST'])
 def general():
 	data_ret = request.get_json()
 	command = data_ret["command"]

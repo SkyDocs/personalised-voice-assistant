@@ -16,12 +16,28 @@ def listen():
 			command = r.recognize_google(audio).lower()
 			print(command)
 		except sr.UnknownValueError:
-			listen()
+			command = listen()
 	return command
 
 
 # command = "hello"
 # command = command.encode("utf-8")
+
+def bot(response):
+	voice_id = "english-north"
+
+	engine = pyttsx3.init()
+	rate = engine.getProperty('rate')
+	engine.setProperty('rate', 190)
+	volume = engine.getProperty('volume')
+	engine.setProperty('volume', 1.0)
+	sound = engine.getProperty('voices')
+	engine.setProperty('voice', voice_id)
+
+	for i in str(response).splitlines():
+		engine.say(response)
+	engine.runAndWait()
+
 
 def main():
 	command = listen()
@@ -39,23 +55,10 @@ def main():
 
 	response = json.loads(response)
 
-	print(response['response'])
+	response = response['response']
+	
+	print(response)
+	bot(response)
 
-	voice_id = "english-north"
-
-	engine = pyttsx3.init()
-	rate = engine.getProperty('rate')
-	engine.setProperty('rate', 190)
-	volume = engine.getProperty('volume')
-	engine.setProperty('volume', 1.0)
-	sound = engine.getProperty('voices')
-	engine.setProperty('voice', voice_id)
-
-	for i in str(response).splitlines():
-		engine.say(response)
-	engine.runAndWait()
-
-	main()
-
-if __name__ == '__main__':
+while True:
 	main()
