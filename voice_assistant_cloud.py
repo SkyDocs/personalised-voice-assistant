@@ -11,7 +11,7 @@ CORS(app)
 
 @app.route('/', methods=['POST'])
 
-def predict():
+def general():
 	data_ret = request.get_json()
 	command = data_ret["command"]
 	command = base64.b64decode(command)
@@ -28,5 +28,10 @@ def predict():
 	return response
 
 
+# @app.route('/recongise', methods=['POST'])
+# def recognise():
+# 	# get the wav file, and pass it to the pedict function
+# 	
+
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=8080)
+	app.run(host='127.0.0.1', port=8080)

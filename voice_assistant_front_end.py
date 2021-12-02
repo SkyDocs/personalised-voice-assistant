@@ -10,44 +10,52 @@ def listen():
 	r = sr.Recognizer()
 
 	with mic as source:
+		print("listening")
 		audio = r.listen(source, phrase_time_limit = 5)
 		try:
 			command = r.recognize_google(audio).lower()
+			print(command)
 		except sr.UnknownValueError:
 			listen()
 	return command
 
-# command = listen()
 
-command = "hello"
+# command = "hello"
 # command = command.encode("utf-8")
 
-command = base64.b64encode(command.encode("utf-8"))
-command = str(command, "utf-8")
+def main():
+	command = listen()
+	command = base64.b64encode(command.encode("utf-8"))
+	command = str(command, "utf-8")
 
-# command = command.decode("utf-8")
+	# command = command.decode("utf-8")
 
-url = "http://127.0.0.1:8080"
+	url = "http://127.0.0.1:8080"
 
-response = requests.post(url,json = {"command":command})
+	response = requests.post(url,json = {"command":command})
 
-response = response.text.strip()
-print(response)
+	response = response.text.strip()
+	print(response)
 
-response = json.loads(response)
+	response = json.loads(response)
 
-print(response['response'])
+	print(response['response'])
 
-voice_id = "english-north"
+	voice_id = "english-north"
 
-engine = pyttsx3.init()
-rate = engine.getProperty('rate')
-engine.setProperty('rate', 190)
-volume = engine.getProperty('volume')
-engine.setProperty('volume', 1.0)
-sound = engine.getProperty('voices')
-engine.setProperty('voice', voice_id)
+	engine = pyttsx3.init()
+	rate = engine.getProperty('rate')
+	engine.setProperty('rate', 190)
+	volume = engine.getProperty('volume')
+	engine.setProperty('volume', 1.0)
+	sound = engine.getProperty('voices')
+	engine.setProperty('voice', voice_id)
 
-for i in str(response).splitlines():
-	engine.say(response)
-engine.runAndWait()
+	for i in str(response).splitlines():
+		engine.say(response)
+	engine.runAndWait()
+
+	main()
+
+if __name__ == '__main__':
+	main()
