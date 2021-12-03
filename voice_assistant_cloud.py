@@ -36,10 +36,22 @@ def general():
 	return response
 
 
-# @app.route('/recongise', methods=['POST'])
-# def recognise():
-# 	# get the wav file, and pass it to the pedict function
-# 	
+@app.route('/recongise', methods=['POST'])
+def recognise():
+
+	data_ret = request.get_json()
+	wav_file = data_ret["user_audio"]
+	# get the wav file, and pass it to the pedict function
+	wav_file = base64.b64decode(wav_file)
+
+	from cli import predict
+	user_id = predict.main(wav_file)
+	user_id = {
+		"user_id": user_id
+	}
+	user_id = jsonify(user_id)
+	return user_id
+
 
 if __name__ == '__main__':
 	app.run(host='127.0.0.1', port=8080)

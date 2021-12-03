@@ -26,54 +26,54 @@ SHUFFLE_SEED = 43
 BATCH_SIZE = 128
 SCALE = 0.5
 
-print("\033[31m[*]\033[0m Get Ready!")
+# print("\033[31m[*]\033[0m Get Ready!")
 
-time.sleep(5)
+# time.sleep(5)
 
-""" Taking the voice input """
+# """ Taking the voice input """
 
-chunk = 1024  # Record in chunks of 1024 samples
-sample_format = pyaudio.paInt16  # 16 bits per sample
-channels = 2
-fs = 16000  # Record at 16000 samples per second
-seconds = 3
-filename = "predict.wav"
+# chunk = 1024  # Record in chunks of 1024 samples
+# sample_format = pyaudio.paInt16  # 16 bits per sample
+# channels = 2
+# fs = 16000  # Record at 16000 samples per second
+# seconds = 3
+# filename = "predict.wav"
 
-p = pyaudio.PyAudio()  # Create an interface to PortAudio
+# p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
-# print("-------------------------------------------------------------------------------------------")
-print("\033[31m[*]\033[0m Recording")
+# # print("-------------------------------------------------------------------------------------------")
+# print("\033[31m[*]\033[0m Recording")
 
-stream = p.open(format=sample_format,
-				channels=channels,
-				rate=fs,
-				frames_per_buffer=chunk,
-				input=True)
+# stream = p.open(format=sample_format,
+# 				channels=channels,
+# 				rate=fs,
+# 				frames_per_buffer=chunk,
+# 				input=True)
 
-frames = []  # Initialize array to store frames
+# frames = []  # Initialize array to store frames
 
-# Store data in chunks for 1 seconds
-for i in range(0, int(fs / chunk * seconds)):
-	data = stream.read(chunk)
-	frames.append(data)
+# # Store data in chunks for 1 seconds
+# for i in range(0, int(fs / chunk * seconds)):
+# 	data = stream.read(chunk)
+# 	frames.append(data)
 
-# Stop and close the stream
-stream.stop_stream()
-stream.close()
-# Terminate the PortAudio interface
-p.terminate()
+# # Stop and close the stream
+# stream.stop_stream()
+# stream.close()
+# # Terminate the PortAudio interface
+# p.terminate()
 
-print("\033[31m[*]\033[0m Finished recording")
-# print("-------------------------------------------------------------------------------------------")
-# Save the recorded data as a WAV file
-wf = wave.open(filename, 'wb')
-wf.setnchannels(channels)
-wf.setsampwidth(p.get_sample_size(sample_format))
-wf.setframerate(fs)
-wf.writeframes(b''.join(frames))
-wf.close()
+# print("\033[31m[*]\033[0m Finished recording")
+# # print("-------------------------------------------------------------------------------------------")
+# # Save the recorded data as a WAV file
+# wf = wave.open(filename, 'wb')
+# wf.setnchannels(channels)
+# wf.setsampwidth(p.get_sample_size(sample_format))
+# wf.setframerate(fs)
+# wf.writeframes(b''.join(frames))
+# wf.close()
 
-print("\033[31m[*]\033[0m Processing")
+# print("\033[31m[*]\033[0m Processing")
 """Pre-processing Noise"""
 
 # If folder noise, does not exist, create it, otherwise do nothing
@@ -234,27 +234,33 @@ def predict(path, labels):
 			if y_pred[index] == 0:
 				print("\033[31m[*]\033[0m Voice Assistant triggered")
 				print("\033[31m[*]\033[0m Welcome user Harshit!")
-				user.user = 1
-				time.sleep(2)
-				import voice_assistant_cli
+				# user.user = 1
+				return 1
+				# time.sleep(2)
+				# import voice_assistant_cli
 			elif y_pred[index] == 1:
 				print("\033[31m[*]\033[0m Welcome user 1")
-				user.user = 2
-				time.sleep(2)
-				import voice_assistant_cli
+				return 2
+				# user.user = 2
+				# time.sleep(2)
+				# import voice_assistant_cli
 			elif y_pred[index] == 2:
 				print("\033[31m[*]\033[0m Welcome user 2")
-				user.user = 3
-				time.sleep(2)
-				import voice_assistant_cli
+				return 3
+				# user.user = 3
+				# time.sleep(2)
+				# import voice_assistant_cli
 			else:
 				print("\033[31m[*]\033[0m User not recognised! Returning to the general user!")
-				time.sleep(2)
-				import voice_assistant_cli
+				return 0
+				# time.sleep(2)
+				# import voice_assistant_cli
 
 
 """ Predict """
-path = ["predict.wav"]
-labels = ["unknown"]
-model = tf.keras.models.load_model('../model.h5') # path to the saved keras model
-predict(path, labels)
+def main(wav_file):
+	path = [wav_file]
+	labels = ["unknown"]
+	model = tf.keras.models.load_model('../model.h5') # path to the saved keras model
+	return predict(path, labels)
+	
