@@ -58,10 +58,10 @@ def recognise():
 	wav_file = base64.b64encode(predict.wav)
 	url = "http://127.0.0.1:8008/recognise"
 	user_id = requests.post(url, json = {"user_audio": wav_file})
-	if(user_id == 0):
+	if user_id == 0:
 		bot("Welcome back general user")
-	else(user_id = 1):
-		bot("Welcome back user", user_id)
+	else:
+		bot("Welcome user", user_id)
 
 
 
@@ -77,9 +77,13 @@ def listen():
 			print(command)
 		except sr.UnknownValueError:
 			command = listen()
-	if(command == "recognise"):
+	if command == "recognise":
 		recognise()
-	
+
+	if command = "search":
+		from cli.utils import search
+		search()
+
 	return command
 
 
