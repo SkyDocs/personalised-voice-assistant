@@ -19,7 +19,7 @@ clear()
 #     func(listen.listen())
 
 
-def func(command):
+def func(command, user_id):
     if "hello" in command:
         current_time = int(strftime('%H'))
         if current_time < 12:
@@ -42,7 +42,7 @@ def func(command):
         return("I dont have a name yet. Would like to give me one?")
 
     elif "who am i" in command:
-        whoami.main()
+        return(whoami.main(user_id))
 
     elif "feature" in command:
         return("I have lot of features, Some of my features are given below:")

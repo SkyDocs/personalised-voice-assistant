@@ -7,6 +7,8 @@ import time
 import pyaudio
 import wave
 
+user_id = 0
+
 def recognise():
 	print("\033[31m[*]\033[0m You will be asked to speak for few seconds for the recognition of the speaker.")
 	time.sleep(3)
@@ -56,7 +58,7 @@ def recognise():
 	wf.close()
 
 	wav_file = base64.b64encode(predict.wav)
-	url = "http://127.0.0.1:8008/recognise"
+	url = "http://127.0.0.1:8080/recognise"
 	user_id = requests.post(url, json = {"user_audio": wav_file})
 	if user_id == 0:
 		bot("Welcome back general user")
