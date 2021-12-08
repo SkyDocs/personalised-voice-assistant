@@ -39,6 +39,7 @@ After installing the requirements and doing the necessary changes.
 This is work in progress. I am porting it cloud so that, we all can use it via all out devices. 
 
 Server Side (Test Only): `python voice_assistant_server.py`
+
 Client Side: `python voice_assistant_front_end.py`
 
 #### CLI

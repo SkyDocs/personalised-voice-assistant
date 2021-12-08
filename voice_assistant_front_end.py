@@ -59,7 +59,10 @@ def recognise():
 
 	wav_file = base64.b64encode(predict.wav)
 	url = "http://127.0.0.1:8080/recognise"
-	user_id = requests.post(url, json = {"user_audio": wav_file})
+	response = requests.post(url, json = {"user_audio": wav_file})
+	response = response.text.strip()
+	response = json.loads()
+	user_id = response["user_id"]
 	if user_id == 0:
 		bot("Welcome back general user")
 	else:
@@ -89,23 +92,23 @@ def listen():
 	return command
 
 
-# command = "hello"
-# command = command.encode("utf-8")
+def bot(response, user_id):
+	if user_id == 0:
+		voice_id = "english-north"
 
-def bot(response):
-	voice_id = "english-north"
+		engine = pyttsx3.init()
+		rate = engine.getProperty('rate')
+		engine.setProperty('rate', 190)
+		volume = engine.getProperty('volume')
+		engine.setProperty('volume', 1.0)
+		sound = engine.getProperty('voices')
+		engine.setProperty('voice', voice_id)
 
-	engine = pyttsx3.init()
-	rate = engine.getProperty('rate')
-	engine.setProperty('rate', 190)
-	volume = engine.getProperty('volume')
-	engine.setProperty('volume', 1.0)
-	sound = engine.getProperty('voices')
-	engine.setProperty('voice', voice_id)
-
-	for i in str(response).splitlines():
-		engine.say(response)
-	engine.runAndWait()
+		for i in str(response).splitlines():
+			engine.say(response)
+		engine.runAndWait()
+	else:
+		print("user is not general", user_id)
 
 
 def main():
