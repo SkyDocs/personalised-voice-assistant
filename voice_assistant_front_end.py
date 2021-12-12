@@ -6,6 +6,7 @@ import json
 import time
 import pyaudio
 import wave
+import validators
 
 user_id = 0
 
@@ -91,6 +92,16 @@ def listen():
 
 	return command
 
+def validate(response):
+	text, url = response.split("\n")
+	
+	bot(text, user_id)
+
+	if validators.url(url):
+		webbrowser.open(url)
+	else:
+		bot("Sorry this is not a valid url")
+
 
 def bot(response, user_id):
 	if user_id == 0:
@@ -109,6 +120,8 @@ def bot(response, user_id):
 		engine.runAndWait()
 	else:
 		print("user is not general", user_id)
+
+	return
 
 
 def main():
@@ -130,7 +143,7 @@ def main():
 	response = response['response']
 	
 	print(response)
-	bot(response)
+	validate(response)
 
 while True:
 	main()

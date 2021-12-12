@@ -5,4 +5,5 @@ import webbrowser
 def calendar():
     bot.bot("Opening Calendar")
     url = "https://calendar.google.com/calendar/"
-    webbrowser.open(url)
+    # webbrowser.open(url)
+    return()
