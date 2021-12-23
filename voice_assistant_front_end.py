@@ -1,6 +1,5 @@
 import base64
 import requests
-import speech_recognition as sr
 import pyttsx3
 import json
 import time
@@ -10,11 +9,12 @@ import validators
 
 user_id = 0
 
-def recognise():
-	print("\033[31m[*]\033[0m You will be asked to speak for few seconds for the recognition of the speaker.")
-	time.sleep(3)
-	print("\033[31m[*]\033[0m Get Ready!")
+# def recognise():
+# 	print("\033[31m[*]\033[0m You will be asked to speak for few seconds for the recognition of the speaker.")
+# 	time.sleep(3)
+# 	print("\033[31m[*]\033[0m Get Ready!")
 
+def listen():
 	""" Taking the voice input """
 
 	chunk = 1024  # Record in chunks of 1024 samples
@@ -58,39 +58,33 @@ def recognise():
 	wf.writeframes(b''.join(frames))
 	wf.close()
 
-	wav_file = base64.b64encode(predict.wav)
-	url = "http://127.0.0.1:8080/recognise"
-	response = requests.post(url, json = {"user_audio": wav_file})
-	response = response.text.strip()
-	response = json.loads()
-	user_id = response["user_id"]
-	if user_id == 0:
-		bot("Welcome back general user")
-	else:
-		bot("Welcome user", user_id)
+	wav_file = base64.b64encode(filename.encode('utf-8'))
+	wav_file = base64.b64encode(open("predict.wav", "rb").read())
+	# wav_file = str(wav_file, "utf-8")
+	
+	return wav_file
 
 
+# def listen():
+# 	mic = sr.Microphone()
+# 	r = sr.Recognizer()
 
-def listen():
-	mic = sr.Microphone()
-	r = sr.Recognizer()
+# 	with mic as source:
+# 		print("listening")
+# 		audio = r.listen(source, phrase_time_limit = 5)
+# 		try:
+# 			command = r.recognize_google(audio).lower()
+# 			print(command)
+# 		except sr.UnknownValueError:
+# 			command = listen()
+# 	if command == "recognise":
+# 		recognise()
 
-	with mic as source:
-		print("listening")
-		audio = r.listen(source, phrase_time_limit = 5)
-		try:
-			command = r.recognize_google(audio).lower()
-			print(command)
-		except sr.UnknownValueError:
-			command = listen()
-	if command == "recognise":
-		recognise()
+# 	if command = "search":
+# 		from cli.utils import search
+# 		search()
 
-	if command = "search":
-		from cli.utils import search
-		search()
-
-	return command
+# 	return command
 
 def validate(response):
 	text, url = response.split("\n")
@@ -126,14 +120,14 @@ def bot(response, user_id):
 
 def main():
 	command = listen()
-	command = base64.b64encode(command.encode("utf-8"))
+	# command = base64.b64encode(command.encode("utf-8"))
 	command = str(command, "utf-8")
 
 	# command = command.decode("utf-8")
 
 	url = "http://127.0.0.1:8080"
 
-	response = requests.post(url,json = {"command":command})
+	response = requests.post(url,json = {"user_audio":command})
 
 	response = response.text.strip()
 	print(response)

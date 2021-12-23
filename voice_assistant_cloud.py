@@ -4,6 +4,11 @@ from flask_cors import CORS
 
 from cli import voice_assistant as vs
 
+import speech_recognition as sr
+
+from pydub import AudioSegment
+from pydub.playback import play
+
 
 app = Flask("Personalised Voice Assistant")
 
@@ -19,22 +24,33 @@ def about():
 	return "This is Personalised Voice Assistant. For more visit: https://github.com/SkyDocs/personalised-voice-assistant\n"
 
 @app.route('/', methods=['POST'])
-def general():
+def wav_text():
 	data_ret = request.get_json()
-	command = data_ret["command"]
-	command = base64.b64decode(command)
-	command = str(command, "utf-8")
+	wav_file = data_ret["user_audio"]
 
-	# call the main function
-	response = vs.func(command)
+	wav = open("temp.wav", "wb")
+	wav_file = base64.b64decode(wav_file)
+	wav.write(wav_file)
+	wav.close()
 
-	response = {
-		"response": response
-	}
-	response = jsonify(response)
+	song = AudioSegment.from_wav("temp.wav")
+	play(song)
 	
-	return response
+	r = sr.Recognizer()
+	wav = sr.AudioFile('temp.wav')
 
+	with wav as source:
+		audio = r.record(source)
+	
+	try:
+		command = r.recognize_google(audio)
+		print(command)
+		# from cli import main
+		# return main.general(command)
+	except Exception as e:
+		print("Exception "+str(e))
+
+	return "Error"
 
 @app.route('/recongise', methods=['POST'])
 def recognise():
@@ -51,6 +67,18 @@ def recognise():
 	}
 	user_id = jsonify(user_id)
 	return user_id
+
+# @app.route('/tmp', methods=['POST'])
+# def encrypt():
+# 	data_ret = request.get_json()
+# 	wav_file = data_ret["user_audio"]
+# 	wav_file = base64.b64decode(wav_file)
+
+# 	from cli import encrypt
+# 	main(wav_file)
+
+# 	return
+
 
 
 if __name__ == '__main__':
