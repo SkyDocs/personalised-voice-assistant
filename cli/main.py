@@ -1,6 +1,9 @@
-def general(command):
+from flask import jsonify
+
+def general(command, user_id):
 	# call the main function
-	response = vs.func(command)
+	import cli.voice_assistant as vs
+	response = vs.func(command, user_id)
 
 	response = {
 		"response": response

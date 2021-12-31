@@ -27,7 +27,7 @@ def listen():
 	p = pyaudio.PyAudio()  # Create an interface to PortAudio
 
 	# print("-------------------------------------------------------------------------------------------")
-	print("\033[31m[*]\033[0m Recording")
+	print("\033[31m[*]\033[0m Say a command!")
 
 	stream = p.open(format=sample_format,
 					channels=channels,
@@ -48,7 +48,7 @@ def listen():
 	# Terminate the PortAudio interface
 	p.terminate()
 
-	print("\033[31m[*]\033[0m Finished recording")
+	print("\033[31m[*]\033[0m Sending it to the server")
 	# print("-------------------------------------------------------------------------------------------")
 	# Save the recorded data as a WAV file
 	wf = wave.open(filename, 'wb')
@@ -87,15 +87,16 @@ def listen():
 # 	return command
 
 def validate(response):
-	text, url = response.split("\n")
-	
-	bot(text, user_id)
+	try:
+		text, url = response.split("\n")
+		bot(text, user_id)
 
-	if validators.url(url):
-		webbrowser.open(url)
-	else:
-		bot("Sorry this is not a valid url")
-
+		if validators.url(url):
+			webbrowser.open(url)
+		else:
+			bot("Sorry this is not a valid url")
+	except:
+		bot(response, user_id)
 
 def bot(response, user_id):
 	if user_id == 0:
@@ -118,16 +119,24 @@ def bot(response, user_id):
 	return
 
 
-def main():
+def get_command():
 	command = listen()
 	# command = base64.b64encode(command.encode("utf-8"))
 	command = str(command, "utf-8")
-
 	# command = command.decode("utf-8")
 
-	url = "http://127.0.0.1:8080"
+	return command
 
-	response = requests.post(url,json = {"user_audio":command})
+def main():
+	url = "http://127.0.0.1:8080"
+	try:
+		command = get_command()
+		response = requests.post(url,json = {"user_audio":command, "user_id":user_id})
+	except:
+		print("no command found")
+		print("Sending the post request again")
+		command = get_command()
+		response = response.post(url, json = {"user_audio":command, "user_id":user_id})
 
 	response = response.text.strip()
 	print(response)

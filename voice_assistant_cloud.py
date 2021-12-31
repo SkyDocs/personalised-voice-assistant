@@ -27,6 +27,7 @@ def about():
 def wav_text():
 	data_ret = request.get_json()
 	wav_file = data_ret["user_audio"]
+	user_id = data_ret["user_id"]
 
 	wav = open("temp.wav", "wb")
 	wav_file = base64.b64decode(wav_file)
@@ -45,12 +46,13 @@ def wav_text():
 	try:
 		command = r.recognize_google(audio)
 		print(command)
-		# from cli import main
-		# return main.general(command)
+		from cli import main
+		return main.general(command, user_id)
 	except Exception as e:
-		print("Exception "+str(e))
+		print("no command found, returning to the front end")
+		return
 
-	return "Error"
+	return "something screwed up" 
 
 @app.route('/recongise', methods=['POST'])
 def recognise():
