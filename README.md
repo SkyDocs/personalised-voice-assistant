@@ -40,7 +40,19 @@ This is work in progress. I am porting it cloud so that, we all can use it via a
 
 Server Side (Test Only): `python voice_assistant_server.py`
 
-Client Side: `python voice_assistant_front_end.py`
+Client Side: 
+
+The main working is to send a post request to the server running with audio command of the user in base64 encoded format along with the user-id.
+
+json format
+```json
+{"user_audio":"**base64 encoded string of voice command**", "user_id":"**user id, default is 0**"}
+```
+
+An exmaple script for this same is `voice_assistant_front_end.py`
+
+It does all of the things, just run the script and get on-board.
+
 
 #### CLI
 
