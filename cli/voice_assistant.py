@@ -6,7 +6,6 @@ import datetime
 import subprocess
 import pyjokes
 from time import strftime
-import webbrowser
 import sys
 import os
 def clear(): return os.system('clear')
@@ -89,14 +88,10 @@ def func(command, user_id):
         notes.main()
 
     elif "gmail" in command:
-        return("sure, opening gmail")
-        url_mail = "https://www.gmail.com"
-        webbrowser.open(url_mail)
+        gmail.gmail()
 
     elif "wikipedia" in command:
-        return("Sure! Here you go.")
-        url_wiki = "https://www.wikipedia.org/"
-        webbrowser.open(url_wiki)
+        wiki.wiki()
 
     elif "news" in command:
         news.news()
